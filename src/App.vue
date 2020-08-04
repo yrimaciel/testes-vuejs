@@ -1,28 +1,39 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header @select-vaga="changeVaga" />
+    <Section v-bind:vaga="vaga" />
+    <Footer />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Section from "./components/Section";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Header,
+    Section,
+    Footer,
+  },
+  data() {
+    return {
+      vaga: "",
+    };
+  },
+  methods: {
+    changeVaga(value) {
+      this.vaga = value;
+    },
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import url("https://fonts.googleapis.com/css?family=Rajdhani&display=swap");
+
+* {
+  font-family: "Rajdhan", sans-serif;
 }
 </style>

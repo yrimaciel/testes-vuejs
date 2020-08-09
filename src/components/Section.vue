@@ -5,15 +5,15 @@
         <h3>Você está vendo as vagas de: {{ vaga }}</h3>
       </div>
     </div>
-    <SectionBanner />
-    <SectionContent />
+
+    <component v-bind:is="currentComponent"></component>
 
     <div class="container div row contact mt-5">
       <div class="col-6" v-show="name.length > 0">
         <h2>Nome: {{ name }}</h2>
       </div>
       <div class="col-6">
-        <Input v-model="name" />
+        <Input />
       </div>
     </div>
   </div>
@@ -21,22 +21,30 @@
 
 <script>
 import SectionBanner from "./SectionBanner";
-import SectionContent from "./SectionContent";
 import Input from "./Input";
+import { mapGetters } from 'vuex'
+
+
 export default {
   components: {
     SectionBanner,
-    SectionContent,
+    SectionContent: () => import("./SectionContent"),
+    SectionIndividualContent: () => import("./SectionIndividualContent"),
     Input,
   },
-  data() {
-    return {
-      name: "",
-    };
-  },
   props: {
-    vaga: String,
+    currentComponent: String,
   },
+  computed: {
+    ...mapGetters({
+      vaga: 'getVaga',
+      name: 'getClientName'
+    })
+    // ...mapState(['vaga']),
+    // ...mapState({
+    //   name: 'clientName'
+    // })
+  }
 };
 </script>
 

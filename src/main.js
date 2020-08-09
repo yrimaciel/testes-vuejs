@@ -1,4 +1,5 @@
 import Vue from "vue";
+import store from './store/store'
 import App from "./App.vue";
 import Vue2Filters from "vue2-filters";
 import "bootstrap";
@@ -10,4 +11,5 @@ Vue.config.productionTip = false;
 
 new Vue({
   render: (h) => h(App),
+  store
 }).$mount("#app");

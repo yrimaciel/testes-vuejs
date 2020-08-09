@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header @select-vaga="changeVaga" />
-    <Section v-bind:vaga="vaga" />
+    <Header @select-vaga="changeVaga" @change-component="changeComponent" />
+    <Section v-bind:current-component="currentSectionComponent" />
     <Footer />
   </div>
 </template>
@@ -10,6 +10,7 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Section from "./components/Section";
+import { mapActions } from 'vuex'
 export default {
   name: "App",
   components: {
@@ -19,12 +20,39 @@ export default {
   },
   data() {
     return {
-      vaga: "",
+      currentSectionComponent: "",
     };
   },
   methods: {
-    changeVaga(value) {
-      this.vaga = value;
+    ...mapActions([
+      'changeVaga'
+    ]),
+    // ...mapMutations({
+    //   changeVaga: 'setVaga'
+    // }),
+    // changeVaga(value) {
+    //   // this.$store.commit('setVaga', value);
+    //   this.$store.dispatch('changeVaga', value);
+    //   // this.vaga = value;
+    // },
+    changeComponent(value) {
+      let component;
+
+      switch (value) {
+        case "home":
+          component = "SectionBanner";
+          break;
+        case "vagas":
+          component = "SectionContent";
+          break;
+        case "empresas":
+          component = "SectionIndividualContent";
+          break;
+        default:
+          console.error("blabla");
+      }
+
+      this.currentSectionComponent = component;
     },
   },
 };

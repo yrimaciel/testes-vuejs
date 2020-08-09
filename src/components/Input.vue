@@ -1,18 +1,20 @@
 <template>
   <input
     type="text"
-    :value="value"
-    @keyup="$emit('input', $event.target.value)"
+    :value="clientName"
+    @keyup="changeClientName($event.target.value)"
     class="form-control"
     placeholder="Digite seu nome"
   />
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex' 
 export default {
-  props: {
-    value: String,
-  },
+  computed: mapGetters({
+    clientName: 'getClientName'
+  }),
+  methods: mapActions(['changeClientName'])
 };
 </script>
 

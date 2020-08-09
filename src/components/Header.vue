@@ -12,9 +12,9 @@
         </a>
 
         <div class="links mr-2">
-          <a href="">Início</a>
-          <a href="">Vagas</a>
-          <a href="">Parceiros</a>
+          <a href="#" @click.prevent="$emit('change-component', 'home')">Início</a>
+          <a href="#" @click.prevent="$emit('change-component', 'vagas')">Vagas</a>
+          <a href="#" @click.prevent="$emit('change-component', 'empresas')">Parceiros</a>
 
           <select
             name="vaga"
@@ -22,7 +22,7 @@
             class="form-control"
             @change="$emit('select-vaga', $event.target.value)"
           >
-            <option value="">Selecione uma parceira</option>
+            <option value>Selecione uma parceira</option>
             <option value="Getnet">Getnet</option>
             <option value="Agibank">Agibank</option>
             <option value="Sicredi">Sicredi</option>
